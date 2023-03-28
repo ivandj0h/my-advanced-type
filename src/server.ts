@@ -1,16 +1,19 @@
 // @ts-ignore
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
+import { PostController } from './controllers/post.controller';
 
 // Load environment variables
 dotenv.config();
 
 class Server {
+    private postController: PostController;
     private app: express.Application;
 
     constructor() {
         this.app = express();
         this.configurations();
+        this.postController = new PostController();
         this.routes();
     }
 
@@ -37,6 +40,7 @@ class Server {
         this.app.get('/', (req: Request, res: Response) => {
             res.send('Hello World!');
         });
+        this.app.use('/api/posts/', this.postController.router);
     }
 
 
