@@ -2,11 +2,13 @@
   "name": "my-advanced-type",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "npx tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "start": "node dist/index.js"
+    "clean": "rimraf ./dist && mkdir dist",
+    "build": "npm run clean && tsc",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
+    "start": "node dist/server.js",
+    "tsc": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "@types/node": "^18.15.10",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.22",
+    "rimraf": "^4.4.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2"
   },
